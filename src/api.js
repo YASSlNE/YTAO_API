@@ -10,7 +10,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 
-const youtubedl = createYoutubeDl('./yt-dlp_linux')
+const youtubedl = createYoutubeDl('./yt-dlp')
 
 
 const app = express();
