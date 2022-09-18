@@ -2,7 +2,7 @@ const express = require("express");
 const serverless = require("serverless-http");
 
 
-const youtubedl = require('youtube-dl-exec')
+const {create: createYoutubeDl} = require('youtube-dl-exec')
 // importing the dependencies
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -10,7 +10,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 
-
+const youtubedl = createYoutubeDl('./yt-dlp_linux')
 
 
 const app = express();
@@ -32,6 +32,7 @@ const fun=async (res, yturl)=>{
 
   if(yturl.includes("/?v=")){
   const get_only_url=yturl.replace("/?v=","") // gets the youtube link
+
   let audio_source={url:"", title:""}
   await youtubedl(get_only_url,{'format': 'bestaudio',
              skipDownload: true,
